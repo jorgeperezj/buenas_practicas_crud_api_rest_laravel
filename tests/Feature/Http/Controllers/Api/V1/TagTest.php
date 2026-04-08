@@ -2,12 +2,12 @@
 
 namespace Tests\Feature\Http\Controllers\Api\V1;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Symfony\Component\HttpFoundation\Response;
-use Tests\TestCase;
 use App\Models\Tag;
 use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use laravel\Sanctum\Sanctum;
+use Symfony\Component\HttpFoundation\Response;
+use Tests\TestCase;
 
 class TagTest extends TestCase
 {
@@ -30,18 +30,18 @@ class TagTest extends TestCase
                         'type',
                         'attributes' => ['name'],
                         'relations' => [
-                            'recipes' => []
-                        ]
-                    ]
-                ]
-        ]);
+                            'recipes' => [],
+                        ],
+                    ],
+                ],
+            ]);
     }
 
     public function test_show(): void
     {
         Sanctum::actingAs(User::factory()->create());
         $tag = Tag::factory()->create();
-        $response = $this->getJson('/api/V1/tags/' . $tag->id);
+        $response = $this->getJson('/api/V1/tags/'.$tag->id);
         $response->assertStatus(Response::HTTP_OK)
             ->assertJsonStructure([
                 'data' => [
@@ -49,9 +49,9 @@ class TagTest extends TestCase
                     'type',
                     'attributes' => ['name'],
                     'relations' => [
-                        'recipes' => []
-                    ]
-                ]
-        ]);
+                        'recipes' => [],
+                    ],
+                ],
+            ]);
     }
 }

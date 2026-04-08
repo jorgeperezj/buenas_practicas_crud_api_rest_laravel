@@ -13,6 +13,7 @@ class RecipeController extends Controller
         $recipes = Recipe::orderBy('id', 'desc')
             ->with('category', 'tags', 'user')
             ->paginate();
+
         return RecipeResource::collection($recipes);
     }
 }

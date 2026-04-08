@@ -22,13 +22,13 @@ class StoreRecipeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'category_id'  => 'required',
-            'title'        => 'required',
-            'description'  => 'required',
-            'ingredients'  => 'required',
+            'category_id' => 'required',
+            'title' => 'required',
+            'description' => 'required',
+            'ingredients' => 'required',
             'instructions' => 'required',
-            'image'        => 'required|mimes:png',
-            'tags'         => 'required',
+            'image' => 'nullable|mimes:png',
+            'tags' => 'required',
         ];
     }
 }

@@ -18,14 +18,14 @@ class RecipeResource extends JsonResource
             'id' => $this->id,
             'type' => 'recipe',
             'attributes' => [
-                'category'     => $this->category->name,
-                'author'       => $this->user->name,
-                'title'        => $this->title,
-                'description'  => $this->description,
-                'ingredients'  => $this->ingredients,
+                'category' => $this->category->name,
+                'author' => $this->user->name,
+                'title' => $this->title,
+                'description' => $this->description,
+                'ingredients' => $this->ingredients,
                 'instructions' => $this->instructions,
-                'image'        => $this->image,
-                'tags'         => $this->tags->pluck('name')->implode(', '),
+                'image' => $this->image,
+                'tags' => $this->tags->pluck('name')->implode(', '),
             ],
         ];
     }

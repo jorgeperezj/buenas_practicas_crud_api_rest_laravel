@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,7 +31,7 @@ class LoginController extends Controller
 
         $user = User::where('email', $request->email)->first();
 
-        if (! $user || ! Hash:: check($request->password, $user->password) ) {
+        if (! $user || ! Hash::check($request->password, $user->password)) {
             return response()->json([
                 'message' => 'The credentials are incorrect',
             ], Response::HTTP_UNPROCESSABLE_ENTITY);
@@ -45,7 +45,7 @@ class LoginController extends Controller
                     'email' => $user->email,
                 ],
                 'token' => $user->createToken($request->name)->plainTextToken,
-            ]
+            ],
         ], Response::HTTP_OK);
     }
 

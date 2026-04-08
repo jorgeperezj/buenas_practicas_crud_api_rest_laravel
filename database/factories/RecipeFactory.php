@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Category;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Recipe>
@@ -19,13 +19,13 @@ class RecipeFactory extends Factory
     public function definition(): array
     {
         return [
-            'category_id'  => Category::all()->random()->id,
-            'user_id'      => User::all()->random()->id,
-            'title'        => fake()->sentence(),
-            'description'  => fake()->text(),
-            'ingredients'  => fake()->text(),
+            'category_id' => Category::all()->random()->id,
+            'user_id' => User::all()->random()->id,
+            'title' => fake()->sentence(),
+            'description' => fake()->text(),
+            'ingredients' => fake()->text(),
             'instructions' => fake()->text(),
-            'image'        => fake()->imageUrl(640, 480),
+            'image' => fake()->imageUrl(640, 480),
         ];
     }
 }

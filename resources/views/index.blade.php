@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Recetas</title>
 
         <script src="https://cdn.tailwindcss.com"></script>
 
@@ -26,7 +26,7 @@
             </div>
             <div class="mb-10">
                 {{ $posts->links() }}
-            </div>A
+            </div>
         </div>
     </body>
 </html>

@@ -20,7 +20,7 @@ class CategoryCollection extends ResourceCollection
                 'type' => 'category',
                 'attributes' => [
                     'name' => $category->name,
-                ]
+                ],
             ];
         })->toArray();
     }

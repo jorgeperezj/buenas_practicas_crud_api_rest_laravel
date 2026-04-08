@@ -24,7 +24,7 @@ class PostCollection extends ResourceCollection
                 'authors' => [
                     'Jorge Pérez',
                     'DentOS',
-                ]
+                ],
             ],
             'type' => 'articles',
         ];

@@ -2,14 +2,13 @@
 
 namespace Tests\Feature\Http\Controllers\Api\V2;
 
+use App\Models\Category;
+use App\Models\Recipe;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use laravel\Sanctum\Sanctum;
 use Symfony\Component\HttpFoundation\Response;
 use Tests\TestCase;
-
-use App\Models\Recipe;
-use App\Models\Category;
-use App\Models\User;
-use laravel\Sanctum\Sanctum;
 
 class RecipeTest extends TestCase
 {
@@ -28,9 +27,9 @@ class RecipeTest extends TestCase
         $response->assertStatus(Response::HTTP_OK)
             ->assertJsonCount(5, 'data')
             ->assertJsonStructure([
-                'data'  => [],
+                'data' => [],
                 'links' => [],
-                'meta'  => [],
-        ]);
+                'meta' => [],
+            ]);
     }
 }

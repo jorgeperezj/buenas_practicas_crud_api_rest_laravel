@@ -2,16 +2,16 @@
 
 namespace Tests\Feature\Http\Controllers\Api\V1;
 
+use App\Models\Category;
+use App\Models\Recipe;
+use App\Models\Tag;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\UploadedFile;
+use laravel\Sanctum\Sanctum;
 use Symfony\Component\HttpFoundation\Response;
 use Tests\TestCase;
-use App\Models\Recipe;
-use App\Models\Category;
-use App\Models\Tag;
-use App\Models\User;
-use laravel\Sanctum\Sanctum;
 
 class RecipeTest extends TestCase
 {
@@ -42,11 +42,11 @@ class RecipeTest extends TestCase
                             'ingredients',
                             'instructions',
                             'image',
-                            'tags'
-                        ]
-                    ]
-                ]
-        ]);
+                            'tags',
+                        ],
+                    ],
+                ],
+            ]);
     }
 
     public function test_store(): void
@@ -56,13 +56,13 @@ class RecipeTest extends TestCase
         $tag = Tag::factory()->create();
 
         $data = [
-            'category_id'  => $category->id,
-            'title'        => $this->faker->sentence,
-            'description'  => $this->faker->paragraph,
-            'ingredients'  => $this->faker->text,
+            'category_id' => $category->id,
+            'title' => $this->faker->sentence,
+            'description' => $this->faker->paragraph,
+            'ingredients' => $this->faker->text,
             'instructions' => $this->faker->text,
-            'image'        => UploadedFile::fake()->image('recipe.png'),
-            'tags'         => $tag->id,
+            'image' => UploadedFile::fake()->image('recipe.png'),
+            'tags' => $tag->id,
         ];
 
         $response = $this->postJson('/api/V1/recipes', $data);
@@ -75,7 +75,7 @@ class RecipeTest extends TestCase
         Category::factory()->create();
         $recipe = Recipe::factory()->create();
 
-        $response = $this->getJson('/api/V1/recipes/' . $recipe->id);
+        $response = $this->getJson('/api/V1/recipes/'.$recipe->id);
         $response->assertStatus(Response::HTTP_OK)
             ->assertJsonStructure([
                 'data' => [
@@ -89,10 +89,10 @@ class RecipeTest extends TestCase
                         'ingredients',
                         'instructions',
                         'image',
-                        'tags'
-                    ]
-                ]
-        ]);
+                        'tags',
+                    ],
+                ],
+            ]);
     }
 
     public function test_update(): void
@@ -102,19 +102,19 @@ class RecipeTest extends TestCase
         $recipe = Recipe::factory()->create();
 
         $data = [
-            'category_id'  => $category->id,
-            'title'        => 'Updated title',
-            'description'  => 'Updated description',
-            'ingredients'  => $this->faker->text,
+            'category_id' => $category->id,
+            'title' => 'Updated title',
+            'description' => 'Updated description',
+            'ingredients' => $this->faker->text,
             'instructions' => $this->faker->text,
         ];
 
-        $response = $this->putJson('/api/V1/recipes/' . $recipe->id, $data);
+        $response = $this->putJson('/api/V1/recipes/'.$recipe->id, $data);
         $response->assertStatus(Response::HTTP_OK);
 
         $this->assertDatabaseHas('recipes', [
-            'title'        => 'Updated title',
-            'description'  => 'Updated description',
+            'title' => 'Updated title',
+            'description' => 'Updated description',
         ]);
     }
 
@@ -124,7 +124,7 @@ class RecipeTest extends TestCase
         Category::factory()->create();
         $recipe = Recipe::factory()->create();
 
-        $response = $this->deleteJson('/api/V1/recipes/' . $recipe->id);
+        $response = $this->deleteJson('/api/V1/recipes/'.$recipe->id);
         $response->assertStatus(Response::HTTP_NO_CONTENT);
     }
 }
